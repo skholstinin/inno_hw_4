@@ -8,9 +8,9 @@ public class ObjectBox {
 
     List<Object> myListObject = new ArrayList<>();
 
-    public ObjectBox(List<? extends Number> array[]) {
-        for (int i = 0; i < array.length; i++) {
-            myListObject.add(array[i]);
+    public ObjectBox(List<Object> array) {
+        for (int i = 0; i < array.size(); i++) {
+            myListObject.add(array);
         }
     }
 

@@ -15,7 +15,10 @@ public class MathBox {
     }
 
     public void dump() {
-
+        for (Iterator<Integer> i = numberTreeSet.iterator(); i.hasNext(); ) {
+            Object item = i.next();
+            System.out.println(item);
+        }
     }
 
     public int summator() {
