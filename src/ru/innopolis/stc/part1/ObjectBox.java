@@ -1,4 +1,5 @@
-package ru.innopolis.stc.part1;
+package ru.innopolis.stc;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,16 +8,18 @@ public class ObjectBox {
 
     List<Object> myListObject = new ArrayList<>();
 
-    public ObjectBox(List<Integer> array[]) {
+    public ObjectBox(List<? extends Number> array[]) {
         for (int i = 0; i < array.length; i++) {
             myListObject.add(array[i]);
         }
-
     }
 
     public void addObject(List<? extends Number> newobject) {
-        myListObject.add(newobject);
-
+        try {
+            myListObject.add(newobject);
+        } catch (MyException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public int summator() {
@@ -24,23 +27,29 @@ public class ObjectBox {
         for (int i = 0; i < myListObject.size(); i++) {
             try {
                 sum += (int) myListObject.get(i);
-            } catch (ClassCastException e) {
-
-                System.out.println("Error ClassCastException");
+            } catch (MyException ex) {
+                System.out.println(ex.getMessage());
             }
         }
         return sum;
     }
 
-    public void searchAndRemoveItem(Integer item) {
-        myListObject.remove(item);
+    public void searchAndRemoveItem(List<? extends Number> item) {
+        try {
+            myListObject.remove(item);
+        } catch (MyException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public List splitter(int divider) {
-        //List<Integer> ArrayList = new ArrayList<Integer>(numberTreeSet);
-        List<Number> localList = new ArrayList<Number>();
+        List<Object> localList = new ArrayList<>();
         for (int i = 0; i < myListObject.size(); i++) {
-            localList.add(i, (int) myListObject.get(i) / divider);
+            try {
+                localList.add(i, myListObject.get(i));
+            } catch (MyException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         return localList;
     }

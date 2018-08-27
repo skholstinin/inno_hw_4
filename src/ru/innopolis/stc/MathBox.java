@@ -14,9 +14,11 @@ public class MathBox {
         }
     }
 
-    public int summator() {
+    public void dump() {
 
-        //Поэтому приводим его к ArrayList.
+    }
+
+    public int summator() {
         int sum = 0;
         for (int i = 0; i < numberTreeSet.toArray().length; i++) {
             sum += (int) numberTreeSet.toArray()[i];
@@ -24,17 +26,6 @@ public class MathBox {
         return sum;
     }
 
-    public void bubleSort(int arr[]) {//только для конструктора с ArrayList внутри
-        for (int i = arr.length - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int tmp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = tmp;
-                }
-            }
-        }
-    }
 
     public void searchAndRemoveItem(Integer item) {
         numberTreeSet.remove(item);
