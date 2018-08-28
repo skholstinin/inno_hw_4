@@ -2,15 +2,23 @@ package ru.innopolis.stc;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ObjectBox {
 
-    List<Object> myListObject = new ArrayList<>();
+    static private List<Object> myListObject = new ArrayList<>();
 
-    public ObjectBox(List<Object> array) {
+    public ObjectBox(List<? extends Number> array) {
         for (int i = 0; i < array.size(); i++) {
             myListObject.add(array);
+        }
+    }
+
+    public void dump() {
+        for (Iterator<Object> i = myListObject.iterator(); i.hasNext(); ) {
+            Object item = i.next();
+            System.out.println(item);
         }
     }
 

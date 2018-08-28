@@ -7,7 +7,7 @@ import java.util.List;
 public class MathObject extends ObjectBox {
 
 
-    public MathObject(List<Object> array) {
+    public MathObject(List<? extends Number> array) {
         super(array);
     }
 
