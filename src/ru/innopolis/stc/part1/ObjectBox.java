@@ -7,12 +7,11 @@ import java.util.List;
 
 public class ObjectBox {
 
-    static private List<Object> myListObject = new ArrayList<>();
+    private List<Object> myListObject = new ArrayList<Object>();
 
-    public ObjectBox(List<? extends Number> array) {
-        for (int i = 0; i < array.size(); i++) {
-            myListObject.add(array);
-        }
+    public ObjectBox(ArrayList<? extends Object> inputParam) {
+        myListObject.add(inputParam);
+
     }
 
     public void dump() {
@@ -22,7 +21,7 @@ public class ObjectBox {
         }
     }
 
-    public void addObject(List<? extends Number> newobject) {
+    public void addObject(List<? extends Object> newobject) {
         try {
             myListObject.add(newobject);
         } catch (MyException ex) {
@@ -42,7 +41,7 @@ public class ObjectBox {
         return sum;
     }
 
-    public void searchAndRemoveItem(List<? extends Number> item) {
+    public void searchAndRemoveItem(List<? extends Object> item) {
         try {
             myListObject.remove(item);
         } catch (MyException ex) {
@@ -50,8 +49,8 @@ public class ObjectBox {
         }
     }
 
-    public List splitter(int divider) {
-        List<Object> localList = new ArrayList<>();
+    public ArrayList splitter(int divider) {
+        ArrayList<Object> localList = new ArrayList<>();
         for (int i = 0; i < myListObject.size(); i++) {
             try {
                 localList.add(i, myListObject.get(i));
