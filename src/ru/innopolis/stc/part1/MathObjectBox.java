@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class MathObjectBox extends ObjectBox {
 
-    public MathObjectBox(ArrayList<? extends Object> inputParam) {
+    public MathObjectBox(ArrayList<? extends Number> inputParam) {
         super(inputParam);
     }
 }

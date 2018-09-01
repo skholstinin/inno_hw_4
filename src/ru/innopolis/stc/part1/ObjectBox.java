@@ -2,28 +2,26 @@ package ru.innopolis.stc;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ObjectBox {
 
-    private List<Object> myListObject = new ArrayList<Object>();
+    private ArrayList<Number> myListObject = new ArrayList<>();
 
-    public ObjectBox(ArrayList<? extends Object> inputParam) {
-        myListObject.add(inputParam);
+    public ObjectBox(ArrayList<? extends Number> inputParam) {
+        myListObject.addAll(inputParam);
 
     }
 
     public void dump() {
-        for (Iterator<Object> i = myListObject.iterator(); i.hasNext(); ) {
-            Object item = i.next();
-            System.out.println(item);
+        for (Number n : myListObject) {
+            System.out.println(n);
         }
     }
 
-    public void addObject(List<? extends Object> newobject) {
+    public void addObject(ArrayList<? extends Number> newobject) {
         try {
-            myListObject.add(newobject);
+            myListObject.addAll(newobject);
         } catch (MyException ex) {
             System.out.println(ex.getMessage());
         }
@@ -31,32 +29,31 @@ public class ObjectBox {
 
     public int summator() {
         int sum = 0;
-        for (int i = 0; i < myListObject.size(); i++) {
-            try {
-                sum += (int) myListObject.get(i);
-            } catch (MyException ex) {
+        for (Number n : myListObject) {
+            if (n instanceof Integer) {
+                sum += n.intValue();
+            } else {
+                MyException ex = new MyException("Error parametr");
                 System.out.println(ex.getMessage());
             }
-        }
+            }
         return sum;
     }
 
-    public void searchAndRemoveItem(List<? extends Object> item) {
+    public void searchAndRemoveItem(List<? extends Number> item) {
         try {
             myListObject.remove(item);
-        } catch (MyException ex) {
-            System.out.println(ex.getMessage());
+        } catch (MyException e) {
+            e = new MyException("Error");
+            System.out.println(e.getMessage());
         }
     }
 
-    public ArrayList splitter(int divider) {
-        ArrayList<Object> localList = new ArrayList<>();
-        for (int i = 0; i < myListObject.size(); i++) {
-            try {
-                localList.add(i, myListObject.get(i));
-            } catch (MyException ex) {
-                System.out.println(ex.getMessage());
-            }
+    public List splitter(int divider) {
+        ArrayList<Number> localList = new ArrayList();
+        for (Number n : myListObject) {
+            localList.add(n.intValue() / divider);
+            System.out.println(localList);
         }
         return localList;
     }

@@ -7,38 +7,51 @@ public class MathBox {
     private final SortedSet<Integer> numberTreeSet = new TreeSet<>();
 
 
-    public MathBox(int array[]) {//конструктор для TreeSet
-
-        for (int i = 0; i < array.length; i++) {
-            numberTreeSet.add(array[i]);//TreeSet добавит в себя только уникальные значения и отсортирует их
-        }
+    public MathBox(ArrayList<Integer> array) {//конструктор для TreeSet
+        numberTreeSet.addAll(array);//TreeSet добавит в себя только уникальные значения и отсортирует их
     }
 
     public void dump() {
-        for (Iterator<Integer> i = numberTreeSet.iterator(); i.hasNext(); ) {
-            Object item = i.next();
+        for (Integer item : numberTreeSet) {
             System.out.println(item);
         }
     }
 
+    public void addItem(Integer item) {
+        numberTreeSet.add(item);
+    }
+
+
     public int summator() {
+        Iterator<Integer> iterator = numberTreeSet.iterator();
         int sum = 0;
-        for (int i = 0; i < numberTreeSet.toArray().length; i++) {
-            sum += (int) numberTreeSet.toArray()[i];
+        while (iterator.hasNext()) {
+            sum += iterator.next();
         }
         return sum;
     }
 
+    public void bubleSort(int arr[]) {//только для конструктора с ArrayList внутри
+        for (int i = arr.length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                }
+            }
+        }
+    }
 
     public void searchAndRemoveItem(Integer item) {
         numberTreeSet.remove(item);
     }
 
     public List splitter(int divider) {
-        List<Integer> ArrayList = new ArrayList<Integer>(numberTreeSet);
-        List localList = new ArrayList();
-        for (int i = 0; i < ArrayList.size(); i++) {
-            localList.add(i, (int) ArrayList.get(i) / divider);
+        ArrayList<Integer> localList = new ArrayList();
+        for (Integer s : numberTreeSet) {
+            localList.add(s / divider);
+            System.out.println(localList);
         }
         return localList;
     }
